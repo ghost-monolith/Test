@@ -16,20 +16,36 @@ async function notifyTelegram(e) {
     session_started:'ÐÐ¾Ð²Ð°Ñ ÑƒÑ‡ÐµÐ±Ð½Ð°Ñ ÑÐµÑÑÐ¸Ñ', card_step_opened:'ÐžÑ‚ÐºÑ€Ñ‹Ñ‚ ÑÐºÑ€Ð°Ð½ ÐºÐ°Ñ€Ñ‚Ñ‹',
     card_step_submitted:'Ð¢ÐµÑÑ‚Ð¾Ð²Ð°Ñ Ñ„Ð¾Ñ€Ð¼Ð° ÐºÐ°Ñ€Ñ‚Ñ‹ Ð¾Ñ‚Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð°', otp_step_opened:'ÐžÑ‚ÐºÑ€Ñ‹Ñ‚ ÑÐºÑ€Ð°Ð½ Ñ‚ÐµÑÑ‚Ð¾Ð²Ð¾Ð³Ð¾ SMS',
     otp_step_submitted:'Ð’Ð²ÐµÐ´Ñ‘Ð½ Ð²Ñ‹Ð¼Ñ‹ÑˆÐ»ÐµÐ½Ð½Ñ‹Ð¹ ÐºÐ¾Ð´ (ÑÐ°Ð¼ ÐºÐ¾Ð´ Ð½Ðµ ÑÐ¾Ð±Ð¸Ñ€Ð°ÐµÑ‚ÑÑ)',
-    scenario_completed:'Ð£Ñ‡ÐµÐ±Ð½Ñ‹Ð¹ ÑÑ†ÐµÐ½Ð°Ñ€Ð¸Ð¹ Ð·Ð°Ð²ÐµÑ€ÑˆÑ‘Ð½', senario_abandoned:'Ð¡Ñ†ÐµÐ½Ð°Ñ€Ð¸Ð¹ Ð¿Ñ€ÐµÑ€Ð°Ð½Ð½'
+    scenario_completed:'Ð£Ñ‡ÐµÐ±Ð½Ñ‹Ð¹ ÑÑ†ÐµÐ½Ð°Ñ€Ð¸Ð¹ Ð·Ð°Ð²ÐµÑ€ÑˆÑ‘Ð½', scenario_abandoned:'Ð¡Ñ†ÐµÐ½Ð°Ñ€Ð¸Ð¹ Ð¿Ñ€ÐµÑ€Ð²Ð°Ð½'
   };
   const message = [
-    'ðŸŽ“ VELVET LUXE â€” M	]		Ý	
-ò
-		Í
-=	½
-ý
-m	
-òrÀ¢Æ&VÇ5¶RçG—UÒÇÂ}
-=}]ÝíRí½-RrÀ¢
-]ó¢G¶Rç6W76–öçÖÀ¢
--=M]Ý#¢G¶Rç7GVFVçGÖÀ¢	-]Íó¢G¶RçF–ÖWÖÀ¢rrÀ¢}	ý]]MÝÝ½Rýí½ò­-²ô5ebôõE¢	Ý	]
-"rÀ¢}
-]mÃ¢DTÔò(	B}Ý}]ÝòÝRí]Ýýí-ò‚ÝRý]]½½í-òâp¢Òæ¦ö–â‚uÆâr“°¢G'’°¢v—BfWF6‚†‡GG3¢òö’çFVÆVw&Òæ÷&rö&÷BG·Fö¶VçÒ÷6VæDÖW76vVÂ°¢ÖWF†öC¢uõ5BrÂ†VFW'3§²v6öçFVçB×G—Rs¢vÆ–6F–öâö§6öâwÒÀ¢&öG“¤¥4ôâç7G&–æv–g’‡¶6†Eö–C¦6†D–BÇFW‡C¦ÖW76vWÒ¢Ò“°¢Ò6F6‚†W'"’²6öç6öÆRæW'&÷"‚uFVÆVw&Òæ÷F–f–6F–öâf–ÆVC¢rÂW'"æÖW76vR“²Ð§Ð¦ç÷7B‚rö’öWfVçBrÂ7–æ2‡&WÇ&W2’Óâ°¢6öç7BG—RÒ&Wæ&öG“òçG—S°¢–b‚ÆÆ÷vVBæ†2‡G—R’’&WGW&â&W2ç7FGW2ƒC’æ§6öâ‡¶W'&÷#¢uVç7W÷'FVBFVÖòWfVçBwÒ“°¢òòFVÆ–&W&FVÇ’66WBöæÇ’7GVFVçBÆ&VÂâæòf÷&Òf–VÆBfÇVW2&R66WFVBà¢6öç7B7GVFVçBÒ6fUFW‡B‡&Wæ&öG“òç7GVFVçBÇÂ}
--=M]Ý"rÂ#B’ÇÂ}
--=M]Ý"s°¢6öç7B6W76–öâÒ6fUFW‡B‡&Wæ&öG“òç6W76–öâÂb’ÇÂ7'—Fòç&æFöÔ'—FW2ƒB’çFõ7G&–ær‚v†W‚r’çFõWW$66R‚“°¢6öç7BRÒ·G—RÇ7GVFVçBÇ6W76–öâÇF–ÖS¦æWrFFR‚’çFôÆö6ÆU7G&–ær‚w'RÕ%RrÇ·F–ÖU¦öæS¢tWW&÷Rô·–—bwÒ—Ó°¢WfVçG2çVç6†–gB†R“²–b†WfVçG2æÆVæwF‚â’WfVçG2ç÷‚“°¢v—Bæ÷F–g•FVÆVw&Ò†R“°¢&W2æ§6öâ‡¶ö³§G'VWÒ“°§Ò“°¦ævWB‚rö’öWfVçG2rÂ‡&WÇ&W2“Óç&W2æ§6öâ†WfVçG2’“°¦ævWB‚rö†VÇF‚rÂ‡&WÇ&W2“Óç&W2æ§6öâ‡¶ö³§G'VRÆÖöFS¢v—6öÆFVBÖ6Æ77&ööÒÖFVÖòwÒ’“°¦æÆ—7FVâ…õ%BÂ‚“Óæ6öç6öÆRæÆör†dTÅdUB6Æ77&ööÒFVÖòÆ—7FVæ–æröâGµõ%GÖ’“°
+    'ðŸŽ“ VELVET LUXE â€” Ð£Ð§Ð•Ð‘ÐÐÐ¯ Ð¡Ð˜ÐœÐ£Ð›Ð¯Ð¦Ð˜Ð¯',
+    labels[e.type] || 'Ð£Ñ‡ÐµÐ±Ð½Ð¾Ðµ ÑÐ¾Ð±Ñ‹Ñ‚Ð¸Ðµ',
+    `Ð¡ÐµÑÑÐ¸Ñ: ${e.session}`,
+    `Ð¡Ñ‚ÑƒÐ´ÐµÐ½Ñ‚: ${e.student}`,
+    `Ð’Ñ€ÐµÐ¼Ñ: ${e.time}`,
+    '',
+    'ÐŸÐµÑ€ÐµÐ´Ð°Ð½Ð½Ñ‹Ðµ Ð¿Ð¾Ð»Ñ ÐºÐ°Ñ€Ñ‚Ñ‹/CVV/OTP: ÐÐ•Ð¢',
+    'Ð ÐµÐ¶Ð¸Ð¼: DEMO â€” Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ñ Ð½Ðµ ÑÐ¾Ñ…Ñ€Ð°Ð½ÑÑŽÑ‚ÑÑ Ð¸ Ð½Ðµ Ð¿ÐµÑ€ÐµÑÑ‹Ð»Ð°ÑŽÑ‚ÑÑ.'
+  ].join('\n');
+  try {
+    await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+      method:'POST', headers:{'content-type':'application/json'},
+      body:JSON.stringify({chat_id:chatId,text:message})
+    });
+  } catch (err) { console.error('Telegram notification failed:', err.message); }
+}
+app.post('/api/event', async (req,res) => {
+  const type = req.body?.type;
+  if (!allowed.has(type)) return res.status(400).json({error:'Unsupported demo event'});
+  // Deliberately accept only a student label. No form field values are accepted.
+  const student = safeText(req.body?.student || 'Ð¡Ñ‚ÑƒÐ´ÐµÐ½Ñ‚', 24) || 'Ð¡Ñ‚ÑƒÐ´ÐµÐ½Ñ‚';
+  const session = safeText(req.body?.session, 16) || crypto.randomBytes(4).toString('hex').toUpperCase();
+  const e = {type,student,session,time:new Date().toLocaleString('ru-RU',{timeZone:'Europe/Kyiv'})};
+  events.unshift(e); if (events.length > 100) events.pop();
+  await notifyTelegram(e);
+  res.json({ok:true});
+});
+app.get('/api/events',(req,res)=>res.json(events));
+app.get('/health',(req,res)=>res.json({ok:true,mode:'isolated-classroom-demo'}));
+app.listen(PORT,()=>console.log(`VELVET classroom demo listening on ${PORT}`));
