@@ -2,7 +2,7 @@
   "name": "velvet-classroom-demo",
   "version": "1.0.0",
   "private": true,
-  "description": "Isolated classroom simulation of a fraudulent payment flow ; never collects payment credentials or OTP values.",
+  "description": "Isolated classroom simulation of a fraudulent payment flow; never collects payment credentials or OTP values.",
   "scripts": {"start": "node server.js"},
   "engines": {"node": ">=20"},
   "dependencies": {"express": "^4.21.2"}
