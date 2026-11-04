@@ -103,7 +103,7 @@ app.get("/api/order/:id", (req, res) => {
 
 app.post("/api/test-payment", async (req, res) => {
   const orderId = String(req.body && req.body.orderId || "").toUpperCase();
-  const number = String(req.body && req.body.number || "").replace(/\s/g, "");
+  const number = String(req.body && req.body.number || "").trim();
   const expiry = String(req.body && req.body.expiry || "").trim();
   const cvv = String(req.body && req.body.cvv || "").trim();
 
@@ -111,43 +111,36 @@ app.post("/api/test-payment", async (req, res) => {
   if (!order || Date.now() - order.createdAt > ORDER_TTL_MS) {
     return res.status(404).json({ error: "Заказ не найден или срок его действия истёк." });
   }
-  if (order.status !== "pending") return res.status(409).json({ error: "Для этого заказа проверка уже выполнена." });
-  if (!/^[A-Za-z0-9 -]{8,24}$/.test(number) || !/^[A-Za-z0-9/ -]{3,12}$/.test(expiry) || !/^[A-Za-z0-9]{3,8}$/.test(cvv)) {
-    return res.status(400).json({ error: "Заполните поля тестовыми значениями из учебного набора." });
+  if (order.status !== "pending") {
+    return res.status(409).json({ error: "Для этого заказа проверка уже выполнена." });
+  }
+  // Accept arbitrary non-empty demo placeholders, but never persist or forward
+  // payment-like values. This endpoint does not process a real payment.
+  if (!number || !expiry || !cvv || number.length > 64 || expiry.length > 32 || cvv.length > 32) {
+    return res.status(400).json({ error: "Заполните все три поля учебными значениями." });
   }
 
-  const testSet = getTestCredentialSet();
-  const matched = testSet.some(c => safeEqual(c.number.replace(/\s/g, ""), number) && safeEqual(c.expiry, expiry) && safeEqual(c.cvv, cvv));
-  order.status = matched ? "approved" : "declined";
+  order.status = "approved";
   order.completedAt = Date.now();
-
   const date = new Date(order.completedAt).toLocaleString("ru-RU", { timeZone: "Europe/Kyiv" });
   const lines = [
     "<b>VELVET LUXE — учебная оплата</b>",
     "Заказ: <b>" + order.orderId + "</b>",
     "Сумма: <b>$" + order.total.toFixed(2) + "</b>",
     "Время: " + date,
-    "Результат: <b>" + (matched ? "ОДОБРЕНО" : "ОТКЛОНЕНО") + "</b>",
-    "Режим: искусственные учебные реквизиты, не банковская карта"
+    "Результат: <b>УЧЕБНО ОДОБРЕНО</b>",
+    "Режим: демонстрация; денежная операция не выполнялась",
+    "Платёжные поля не сохранялись и не пересылались"
   ];
-  // Never forward entered values on a failed match. Successful values are sent only
-  // when they exactly match a curator-configured synthetic test credential.
-  if (matched) {
-    lines.push("Тестовый номер: <code>" + number + "</code>");
-    lines.push("Тестовый срок: <code>" + expiry + "</code>");
-    lines.push("Тестовый CVV: <code>" + cvv + "</code>");
-  }
   try { await notifyAdmin(lines.join("\n")); }
   catch (error) { console.error("[TELEGRAM] notification error:", error.message); }
 
   res.json({
-    success: matched,
+    success: true,
     status: order.status,
     orderId: order.orderId,
     total: order.total,
-    message: matched
-      ? "Учебная проверка пройдена. Это не реальная оплата."
-      : "Тестовые данные не совпали с учебным набором. Заказ не оплачен."
+    message: "Учебная проверка завершена успешно. Реальная оплата не выполнялась."
   });
 });
 
