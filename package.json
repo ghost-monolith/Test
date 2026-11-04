@@ -1,8 +1,0 @@
-{
-  "name": "dark-ghost-training-simulator",
-  "version": "1.0.0",
-  "private": true,
-  "description": "Consent-based phishing-awareness training simulation with synthetic data only",
-  "scripts": { "start": "node server.js" },
-  "dependencies": { "express": "^4.21.2" }
-}
